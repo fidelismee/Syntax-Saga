@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "name": "Demon",
+    "image": "/character/character_demon.png",
+    "HP": 40,
+    "special_ability": "Skip the opponent's turn if you use 2 adjectives in 1 sentence."
+  },
+  {
+    "id": 2,
+    "name": "Knight",
+    "image": "/character/character_knight.png",
+    "HP": 60,
+    "special_ability": ""
+  },
+  {
+    "id": 3,
+    "name": "Scholar",
+    "image": "/character/character_scholar.png",
+    "HP": 40,
+    "special_ability": "Can choose to edit any one word in a sentence to boost or weaken it (self or opponent), once per turn."
+  },
+  {
+    "id": 4,
+    "name": "Spellbinder",
+    "image": "/character/character_spellbinder.png",
+    "HP": 45,
+    "special_ability": "Once per game, create a perfect sentence using all parts of speech for a massive one-time attack."
+  },
+  {
+    "id": 5,
+    "name": "Thief",
+    "image": "/character/character_thief.png",
+    "HP": 45,
+    "special_ability": "May steal 1 card from opponent's discard pile per turn."
+  },
+  {
+    "id": 6,
+    "name": "Warrior Mage",
+    "image": "/character/character_warrior_mage.png",
+    "HP": 45,
+    "special_ability": "May switch 1 card with opponent per turn."
+  },
+  {
+    "id": 7,
+    "name": "Warrior",
+    "image": "/character/character_warrior.png",
+    "HP": 50,
+    "special_ability": "May remove an adjective or change an article/preposition/auxiliary after sentence is revealed."
+  }
+]

@@ -1,0 +1,91 @@
+[
+    {
+      "id": 800,
+      "verb": "Eat",
+      "image": "public/verb/verb_card_eat.png",
+      "forms": [
+        { "form": "eat", "points": 2 },
+        { "form": "eats", "points": 2 },
+        { "form": "ate", "points": 3 },
+        { "form": "eating", "points": 3 }
+      ]
+    },
+    {
+      "id": 801,
+      "verb": "Fight",
+      "image": "public/verb/verb_card_fight.png",
+      "forms": [
+        { "form": "fight", "points": 2 },
+        { "form": "fights", "points": 2 },
+        { "form": "fought", "points": 3 },
+        { "form": "fighting", "points": 3 }
+      ]
+    },
+    {
+      "id": 802,
+      "verb": "Fly",
+      "image": "public/verb/verb_card_fly.png",
+      "forms": [
+        { "form": "fly", "points": 2 },
+        { "form": "flies", "points": 2 },
+        { "form": "flew", "points": 3 },
+        { "form": "flying", "points": 3 }
+      ]
+    },
+    {
+      "id": 803,
+      "verb": "Go",
+      "image": "public/verb/verb_card_go.png",
+      "forms": [
+        { "form": "go", "points": 2 },
+        { "form": "goes", "points": 2 },
+        { "form": "went", "points": 3 },
+        { "form": "going", "points": 3 }
+      ]
+    },
+    {
+      "id": 804,
+      "verb": "Listen",
+      "image": "public/verb/verb_card_listen.png",
+      "forms": [
+        { "form": "listen", "points": 2 },
+        { "form": "listens", "points": 2 },
+        { "form": "listened", "points": 3 },
+        { "form": "listening", "points": 3 }
+      ]
+    },
+    {
+      "id": 805,
+      "verb": "Run",
+      "image": "public/verb/verb_card_run.png",
+      "forms": [
+        { "form": "run", "points": 2 },
+        { "form": "runs", "points": 2 },
+        { "form": "ran", "points": 3 },
+        { "form": "running", "points": 3 }
+      ]
+    },
+    {
+      "id": 806,
+      "verb": "Talk",
+      "image": "public/verb/verb_card_talk.png",
+      "forms": [
+        { "form": "talk", "points": 2 },
+        { "form": "talks", "points": 2 },
+        { "form": "talked", "points": 3 },
+        { "form": "talking", "points": 3 }
+      ]
+    },
+    {
+      "id": 807,
+      "verb": "Train",
+      "image": "public/verb/verb_card_train.png",
+      "forms": [
+        { "form": "train", "points": 2 },
+        { "form": "trains", "points": 2 },
+        { "form": "trained", "points": 3 },
+        { "form": "training", "points": 3 }
+      ]
+    }
+  ]
+  

@@ -1,0 +1,21 @@
+[
+    {
+      "id": 301,
+      "forms": ["is", "was"],
+      "points": 2,
+      "image": "/auxiliary/auxiliary_card.png"
+    },
+    {
+      "id": 302,
+      "forms": ["are", "were"],
+      "points": 2,
+      "image": "/auxiliary/auxiliary_card.png"
+    },
+    {
+      "id": 303,
+      "forms": ["am"],
+      "points": 3,
+      "image": "/auxiliary/auxiliary_card.png"
+    }
+  ]
+  

@@ -1,0 +1,21 @@
+[
+    {
+      "id": 201,
+      "article": "The",
+      "points": 2,
+      "image": "/article/article_card.png"
+    },
+    {
+      "id": 202,
+      "article": "A",
+      "points": 2,
+      "image": "/article/article_card.png"
+    },
+    {
+      "id": 203,
+      "article": "An",
+      "points": 3,
+      "image": "/article/article_card.png"
+    }
+  ]
+  
