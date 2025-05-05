@@ -1,2 +1,3 @@
-Frontend/node_modules
-Backend/node_modules
+# Node modules
+Frontend/node_modules/
+Backend/node_modules/
