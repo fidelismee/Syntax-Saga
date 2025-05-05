@@ -1,0 +1,107 @@
+[
+  {
+    "id": 401,
+    "noun": "Boy",
+    "points": 3,
+    "image": "/noun/noun_card_boy.png",
+    "bonus": { "adjective": "Handsome", "extra_points": 2 }
+  },
+  {
+    "id": 402,
+    "noun": "Cat",
+    "points": 2,
+    "image": "/noun/noun_card_cat.png",
+    "bonus": { "adjective": "Cute", "extra_points": 2 }
+  },
+  {
+    "id": 403,
+    "noun": "Dog",
+    "points": 2,
+    "image": "/noun/noun_card_dog.png",
+    "bonus": { "adjective": "Cute", "extra_points": 2 }
+  },
+  {
+    "id": 404,
+    "noun": "Dragon",
+    "points": 2,
+    "image": "/noun/noun_card_dragon.png",
+    "bonus": { "adjective": "Fierce", "extra_points": 2 }
+  },
+  {
+    "id": 405,
+    "noun": "Girl",
+    "points": 3,
+    "image": "/noun/noun_card_girl.png",
+    "bonus": { "adjective": "Beautiful", "extra_points": 2 }
+  },
+  {
+    "id": 406,
+    "noun": "Huntress",
+    "points": 3,
+    "image": "/noun/noun_card_huntress.png",
+    "bonus": { "adjective": "Brave", "extra_points": 2 }
+  },
+  {
+    "id": 407,
+    "noun": "Knight",
+    "points": 3,
+    "image": "/noun/noun_card_knight.png",
+    "bonus": { "adjective": "Brave", "extra_points": 2 }
+  },
+  {
+    "id": 408,
+    "noun": "Cave",
+    "points": 3,
+    "image": "/noun/noun_card_location_cave.png"
+  },
+  {
+    "id": 409,
+    "noun": "Field",
+    "points": 3,
+    "image": "/noun/noun_card_location_field.png"
+  },
+  {
+    "id": 410,
+    "noun": "Hall",
+    "points": 3,
+    "image": "/noun/noun_card_location_hall.png"
+  },
+  {
+    "id": 411,
+    "noun": "Inn",
+    "points": 3,
+    "image": "/noun/noun_card_location_inn.png"
+  },
+  {
+    "id": 412,
+    "noun": "Market",
+    "points": 3,
+    "image": "/noun/noun_card_location_market.png"
+  },
+  {
+    "id": 413,
+    "noun": "Training Grounds",
+    "points": 3,
+    "image": "/noun/noun_card_location_traininggrounds.png"
+  },
+  {
+    "id": 414,
+    "noun": "Man",
+    "points": 3,
+    "image": "/noun/noun_card_man.png",
+    "bonus": { "adjective": "Handsome", "extra_points": 2 }
+  },
+  {
+    "id": 415,
+    "noun": "Ogre",
+    "points": 3,
+    "image": "/noun/noun_card_ogre.png"
+  },
+  {
+    "id": 416,
+    "noun": "Woman",
+    "points": 3,
+    "image": "/noun/noun_card_woman.png",
+    "bonus": { "adjective": "Beautiful", "extra_points": 2 }
+  }
+]

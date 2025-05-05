@@ -1,0 +1,65 @@
+[
+  {
+    "id": 101,
+    "adjective": "Beautiful",
+    "image": "/adjective/adjective_card_beautiful.png",
+    "points": 3,
+    "bestUsedWith": ["girl", "woman"]
+  },
+  {
+    "id": 102,
+    "adjective": "Brave",
+    "image": "/adjective/adjective_card_brave.png",
+    "points": 2,
+    "bestUsedWith": []
+  },
+  {
+    "id": 103,
+    "adjective": "Cute",
+    "image": "/adjective/adjective_card_cute.png",
+    "points": 2,
+    "bestUsedWith": []
+  },
+  {
+    "id": 104,
+    "adjective": "Evil",
+    "image": "/adjective/adjective_card_evil.png",
+    "points": 2,
+    "bestUsedWith": []
+  },
+  {
+    "id": 105,
+    "adjective": "Fierce",
+    "image": "/adjective/adjective_card_fierce.png",
+    "points": 2,
+    "bestUsedWith": []
+  },
+  {
+    "id": 106,
+    "adjective": "Good",
+    "image": "/adjective/adjective_card_good.png",
+    "points": 2,
+    "bestUsedWith": []
+  },
+  {
+    "id": 107,
+    "adjective": "Handsome",
+    "image": "/adjective/adjective_card_handsome.png",
+    "points": 3,
+    "bestUsedWith": ["boy", "man"]
+  },
+  {
+    "id": 108,
+    "adjective": "Huge",
+    "image": "/adjective/adjective_card_huge.png",
+    "points": 2,
+    "bestUsedWith": []
+  },
+  {
+    "id": 109,
+    "adjective": "Little",
+    "image": "/adjective/adjective_card_tiny.png",
+    "points": 2,
+    "bestUsedWith": []
+  }
+]
