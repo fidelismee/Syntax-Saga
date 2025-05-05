@@ -1,0 +1,44 @@
+/* Game.css */
+.game-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #111;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 20px;
+}
+
+.bot-hand,
+.player-hand {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.center-characters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+}
+
+.character {
+  text-align: center;
+}
+
+.character img {
+  width: 200px;
+  height: auto;
+  border: 2px solid #fff;
+  border-radius: 8px;
+}
+
+.card {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}

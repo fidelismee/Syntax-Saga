@@ -1,50 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './DifficultySelect.css';
 
 function DifficultySelect() {
   const location = useLocation();
   const navigate = useNavigate();
 
   const { playerCharacter, botCharacter } = location.state || {};
+  const [playerDeck, setPlayerDeck] = useState([]);
+  const [botDeck, setBotDeck] = useState([]);
+
+  useEffect(() => {
+    // Fetch 5 shuffled cards for both player and bot
+    fetch('http://localhost:3000/api/deal')
+      .then(res => res.json())
+      .then(data => {
+        setPlayerDeck(data.playerDeck.slice(0, 5));
+        setBotDeck(data.botDeck.slice(0, 5));
+      })
+      .catch(err => console.error('❌ Failed to fetch decks:', err));
+  }, []);
 
   if (!playerCharacter || !botCharacter) {
     return <p>Missing character selection. Please go back and choose again.</p>;
   }
 
+  function startGameWithDifficulty(difficulty) {
+    navigate('/game', {
+      state: {
+        playerCharacter,
+        botCharacter,
+        difficulty,
+        playerDeck,
+        botDeck
+      }
+    });
+  }
+
   return (
-    <div>
+    <div className="difficulty-container">
       <h2>Select Bot Difficulty</h2>
 
-      <div style={{ display: 'flex', justifyContent: 'space-around', margin: '30px 0' }}>
-        <div>
+      <div className="character-preview">
+        <div className="character-block">
           <h3>You Selected:</h3>
-          <img
-            src={`http://localhost:3000${playerCharacter.image}`}
-            alt={playerCharacter.name}
-            width={200}
-          />
+          <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
           <p>{playerCharacter.name}</p>
         </div>
 
-        <div>
+        <div className="character-block">
           <h3>Bot Selected:</h3>
-          <img
-            src={`http://localhost:3000${botCharacter.image}`}
-            alt={botCharacter.name}
-            width={200}
-          />
+          <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
           <p>{botCharacter.name}</p>
         </div>
       </div>
 
-      <div style={{ textAlign: 'center' }}>
-        <button onClick={() => navigate('/game', { state: { playerCharacter, botCharacter, difficulty: 'primary' } })}>
+      <div className="difficulty-buttons">
+        <button onClick={() => startGameWithDifficulty('primary')}>
           Primary School
         </button>
-        <button onClick={() => navigate('/game', { state: { playerCharacter, botCharacter, difficulty: 'highschool' } })}>
+        <button onClick={() => startGameWithDifficulty('highschool')}>
           High School
         </button>
-        <button onClick={() => navigate('/game', { state: { playerCharacter, botCharacter, difficulty: 'university' } })}>
+        <button onClick={() => startGameWithDifficulty('university')}>
           University
         </button>
       </div>
