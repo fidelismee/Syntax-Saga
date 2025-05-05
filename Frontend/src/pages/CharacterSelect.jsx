@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './CharacterSelect.css';
 
 function CharacterSelect() {
   const [characters, setCharacters] = useState([]);
   const [selected, setSelected] = useState(null);
-  const navigate = useNavigate(); // ✅ make sure this exists
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:3000/api/characters')
@@ -27,36 +28,32 @@ function CharacterSelect() {
     const botCharacter = characters[Math.floor(Math.random() * characters.length)];
 
     navigate('/select-difficulty', {
-      state: { playerCharacter, botCharacter } // ✅ pass both as route state
+      state: { playerCharacter, botCharacter }
     });
   }
 
   return (
-    <div>
-      <h2>Select Your Character</h2>
-      <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+    <div className="character-container">
+      <h2 className="character-title">Select Your Character</h2>
+      <div className="character-grid">
         {characters.map(char => (
           <div
             key={char.id}
             onClick={() => handleSelect(char.id)}
-            style={{
-              border: selected === char.id ? '3px solid blue' : '1px solid black',
-              padding: '10px',
-              textAlign: 'center',
-              cursor: 'pointer',
-            }}
+            className={`character-card ${selected === char.id ? 'selected' : ''}`}
           >
             <img
               src={`http://localhost:3000${char.image}`}
               alt={char.name}
-              style={{ width: '150px', height: '200px', objectFit: 'cover' }}
+              className="character-image"
             />
-            <p>{char.name}</p>
+            <p className="character-name">{char.name}</p>
           </div>
         ))}
       </div>
-      <br />
-      <button onClick={handleConfirm}>Confirm Selection</button>
+      <button className="confirm-button" onClick={handleConfirm}>
+        Confirm Selection
+      </button>
     </div>
   );
 }
