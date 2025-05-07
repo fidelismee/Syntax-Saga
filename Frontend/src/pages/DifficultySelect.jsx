@@ -26,7 +26,7 @@ function DifficultySelect() {
   }
 
   function startGameWithDifficulty(difficulty) {
-    navigate('/game', {
+    navigate('/rps', {
       state: {
         playerCharacter,
         botCharacter,
@@ -36,6 +36,7 @@ function DifficultySelect() {
       }
     });
   }
+  
 
   return (
     <div className="difficulty-container">

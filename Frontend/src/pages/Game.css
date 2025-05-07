@@ -1,28 +1,41 @@
-/* Game.css */
-.game-table {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+/* Full height layout */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background-color: #111;
-  min-height: 100vh;
+  color: white;
+}
+
+.game-table {
+  display: grid;
+  grid-template-areas:
+    "botHand botHand"
+    "botChar botPlay"
+    "playerChar playerPlay"
+    "playerHand discard";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
   padding: 20px;
   gap: 20px;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
-.bot-hand,
-.player-hand {
+.bot-hand {
+  grid-area: botHand;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-.center-characters {
+.player-hand {
+  grid-area: playerHand;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 100px;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .character {
@@ -30,15 +43,107 @@
 }
 
 .character img {
-  width: 200px;
+  width: 180px;
   height: auto;
-  border: 2px solid #fff;
-  border-radius: 8px;
+  border: 2px solid #ff9307;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.character p {
+  font-weight: bold;
+  color: white;
 }
 
 .card {
-  width: 150px;
-  height: auto;
+  width: 100px;
+  height: 140px;
   object-fit: contain;
   border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.player-area,
+.bot-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 180px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  gap: 10px;
+}
+
+.player-area {
+  grid-area: playerPlay;
+  background-color: #e8f5e9;
+}
+
+.bot-area {
+  grid-area: botPlay;
+  background-color: #fce4ec;
+}
+
+.bot-character {
+  grid-area: botChar;
+}
+
+.player-character {
+  grid-area: playerChar;
+}
+
+.bot-action-box {
+  grid-column: span 2;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff8e1;
+  border: 1px solid #fbc02d;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.game-controls {
+  grid-area: discard;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.game-controls button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #42a5f5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.game-controls button:hover {
+  background-color: #1e88e5;
+}
+
+.discard-pile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discard-pile p {
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.discard-pile .card {
+  width: 80px;
+  height: 110px;
 }
