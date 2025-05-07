@@ -54,6 +54,28 @@ function shuffle(arr) {
   }
   return array;
 }
+function playRockPaperScissors() {
+  const choices = ['rock', 'paper', 'scissors'];
+
+  const playerChoice = choices[Math.floor(Math.random() * 3)];
+  const botChoice = choices[Math.floor(Math.random() * 3)];
+
+  let result;
+  if (playerChoice === botChoice) {
+    result = 'draw';
+  } else if (
+    (playerChoice === 'rock' && botChoice === 'scissors') ||
+    (playerChoice === 'paper' && botChoice === 'rock') ||
+    (playerChoice === 'scissors' && botChoice === 'paper')
+  ) {
+    result = 'player';
+  } else {
+    result = 'bot';
+  }
+
+  return { playerChoice, botChoice, result };
+}
+
 
 // GET: Characters list
 app.get('/api/characters', (req, res) => {
@@ -74,6 +96,11 @@ app.get('/api/deal', (req, res) => {
   const botDeck = shuffle(fullDeck).slice(0, 5);
 
   res.json({ playerDeck, botDeck });
+});
+// GET: Rock Paper Scissors simulation
+app.get('/api/rps', (req, res) => {
+  const outcome = playRockPaperScissors();
+  res.json(outcome);
 });
 
 // Start server

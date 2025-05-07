@@ -14,13 +14,6 @@
     "special_ability": ""
   },
   {
-    "id": 3,
-    "name": "Scholar",
-    "image": "/character/character_scholar.png",
-    "HP": 40,
-    "special_ability": "Can choose to edit any one word in a sentence to boost or weaken it (self or opponent), once per turn."
-  },
-  {
     "id": 4,
     "name": "Spellbinder",
     "image": "/character/character_spellbinder.png",
