@@ -79,52 +79,56 @@ function Game() {
     <div className="game-table">
       {/* Bot Hand */}
       <div className="bot-hand">
-        {botDeck.map((card, index) => (
+        {botDeck.map((_, index) => (
           <img
             key={index}
-            src={`http://localhost:3000${card.image}`}
-            alt={card.name}
+            src="http://localhost:3000/backcard/backcard.png"
+            alt="Back of card"
             className="card bot-card"
           />
         ))}
       </div>
-
-      {/* Bot Character and Play Area */}
-      <div className="bot-character character">
-        <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
-        <p>{botCharacter.name}</p>
+  
+      {/* Bot Character and Dropzone */}
+      <div className="section">
+        <div className="character bot-character">
+          <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
+          <p>{botCharacter.name}</p>
+        </div>
+        <div className="play-area bot-area">
+          {botPlayArea.map((card, index) => (
+            <img
+              key={index}
+              src={`http://localhost:3000${card.image}`}
+              alt={card.name}
+              className="card"
+            />
+          ))}
+        </div>
       </div>
-      <div className="play-area bot-area">
-        {botPlayArea.map((card, index) => (
-          <img
-            key={index}
-            src={`http://localhost:3000${card.image}`}
-            alt={card.name}
-            className="card"
-          />
-        ))}
+  
+      {/* Player Character and Dropzone */}
+      <div className="section">
+        <div className="character player-character">
+          <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
+          <p>{playerCharacter.name}</p>
+        </div>
+        <div
+          className="play-area player-area"
+          onDragOver={e => e.preventDefault()}
+          onDrop={e => handleDrop(e, 'player')}
+        >
+          {playerPlayArea.map((card, index) => (
+            <img
+              key={index}
+              src={`http://localhost:3000${card.image}`}
+              alt={card.name}
+              className="card"
+            />
+          ))}
+        </div>
       </div>
-
-      {/* Player Character and Play Area */}
-      <div className="player-character character">
-        <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
-        <p>{playerCharacter.name}</p>
-      </div>
-      <div
-        className="play-area player-area"
-        onDragOver={e => e.preventDefault()}
-        onDrop={e => handleDrop(e, 'player')}
-      >
-        {playerPlayArea.map((card, index) => (
-          <img
-            key={index}
-            src={`http://localhost:3000${card.image}`}
-            alt={card.name}
-            className="card"
-          />
-        ))}
-      </div>
-
+  
       {/* Player Hand */}
       <div className="player-hand">
         {playerDeck.map((card, index) => (
@@ -138,32 +142,35 @@ function Game() {
           />
         ))}
       </div>
-
-      {/* Bot Action */}
+  
+      {/* Bot Action Display */}
       {botAction && (
         <div className="bot-action-box">
           <p><strong>Bot played:</strong> {botAction}</p>
         </div>
       )}
-
+  
       {/* Submit & Discard Area */}
       <div className="game-controls">
         <button onClick={handleSubmit}>Submit Sentence</button>
-
+        
         <div className="discard-pile">
-          <p>Last Discard</p>
-          {playerDiscard.map((card, i) => (
-            <img
-              key={i}
-              src={`http://localhost:3000${card.image}`}
-              alt={card.name}
-              className="card"
-            />
-          ))}
+          <p>Card Discard</p>
+          <div className="card-row">
+            {playerDiscard.map((card, i) => (
+              <img
+                key={i}
+                src={`http://localhost:3000${card.image}`}
+                alt={card.name}
+                className="card"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
+  
 }
 
 export default Game;

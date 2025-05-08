@@ -9,21 +9,34 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static frontend files
+// ✅ Serve static frontend files
 app.use('/', express.static(path.join(__dirname, '../Frontend')));
 
-// Serve character images
+// ✅ Serve character images
 app.use('/character', express.static(path.join(__dirname, '../public/character')));
 
-// Serve all card images from /public
-const cardFolders = ['adjective', 'article', 'auxiliary', 'noun', 'preposition', 'pronoun', 'specialability', 'verb'];
+// ✅ Serve back of card
+app.use('/backcard', express.static(path.join(__dirname, '../public/backcard')));
+
+// ✅ Serve all card images from /public
+const cardFolders = [
+  'adjective',
+  'article',
+  'auxiliary',
+  'noun',
+  'preposition',
+  'pronoun',
+  'specialability',
+  'verb'
+];
+
 cardFolders.forEach(folder => {
   app.use(`/${folder}`, express.static(path.join(__dirname, `../public/${folder}`)));
 });
 
-// Load all card data from /data
+// ✅ Load all card data from /data
 function loadCardDeck() {
-  const folders = ['adjective', 'article', 'auxiliary', 'noun', 'preposition', 'pronoun', 'specialability', 'verb'];
+  const folders = cardFolders;
   let deck = [];
 
   folders.forEach(folder => {
@@ -45,7 +58,7 @@ function loadCardDeck() {
   return deck;
 }
 
-// Helper: Shuffle array
+// ✅ Helper: Shuffle array
 function shuffle(arr) {
   const array = [...arr];
   for (let i = array.length - 1; i > 0; i--) {
@@ -54,9 +67,10 @@ function shuffle(arr) {
   }
   return array;
 }
+
+// ✅ Rock Paper Scissors logic
 function playRockPaperScissors() {
   const choices = ['rock', 'paper', 'scissors'];
-
   const playerChoice = choices[Math.floor(Math.random() * 3)];
   const botChoice = choices[Math.floor(Math.random() * 3)];
 
@@ -76,8 +90,7 @@ function playRockPaperScissors() {
   return { playerChoice, botChoice, result };
 }
 
-
-// GET: Characters list
+// ✅ API: Get all characters
 app.get('/api/characters', (req, res) => {
   const charactersPath = path.join(__dirname, '../data/character/characters.json');
   try {
@@ -89,7 +102,7 @@ app.get('/api/characters', (req, res) => {
   }
 });
 
-// GET: Deal cards to player and bot
+// ✅ API: Deal cards to both player and bot
 app.get('/api/deal', (req, res) => {
   const fullDeck = loadCardDeck();
   const playerDeck = shuffle(fullDeck).slice(0, 5);
@@ -97,13 +110,14 @@ app.get('/api/deal', (req, res) => {
 
   res.json({ playerDeck, botDeck });
 });
-// GET: Rock Paper Scissors simulation
+
+// ✅ API: Play RPS
 app.get('/api/rps', (req, res) => {
   const outcome = playRockPaperScissors();
   res.json(outcome);
 });
 
-// Start server
+// ✅ Start the server
 app.listen(PORT, () => {
   console.log(`✅ Server is running at http://localhost:${PORT}`);
 });
