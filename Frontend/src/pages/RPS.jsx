@@ -1,6 +1,7 @@
 // src/pages/RPS.jsx
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './RPS.css';
 
 function RPS() {
   const location = useLocation();
@@ -32,7 +33,7 @@ function RPS() {
   if (!outcome) return <p>Playing Rock Paper Scissors...</p>;
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div className="rps-container">
       <h2>Rock Paper Scissors Result</h2>
       <p>🧍 You chose: <strong>{outcome.playerChoice}</strong></p>
       <p>🤖 Bot chose: <strong>{outcome.botChoice}</strong></p>

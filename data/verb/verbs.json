@@ -2,7 +2,7 @@
     {
       "id": 800,
       "verb": "Eat",
-      "image": "public/verb/verb_card_eat.png",
+      "image": "/verb/verb_card_eat.png",
       "forms": [
         { "form": "eat", "points": 2 },
         { "form": "eats", "points": 2 },
@@ -13,7 +13,7 @@
     {
       "id": 801,
       "verb": "Fight",
-      "image": "public/verb/verb_card_fight.png",
+      "image": "/verb/verb_card_fight.png",
       "forms": [
         { "form": "fight", "points": 2 },
         { "form": "fights", "points": 2 },
@@ -24,7 +24,7 @@
     {
       "id": 802,
       "verb": "Fly",
-      "image": "public/verb/verb_card_fly.png",
+      "image": "/verb/verb_card_fly.png",
       "forms": [
         { "form": "fly", "points": 2 },
         { "form": "flies", "points": 2 },
@@ -35,7 +35,7 @@
     {
       "id": 803,
       "verb": "Go",
-      "image": "public/verb/verb_card_go.png",
+      "image": "/verb/verb_card_go.png",
       "forms": [
         { "form": "go", "points": 2 },
         { "form": "goes", "points": 2 },
@@ -46,7 +46,7 @@
     {
       "id": 804,
       "verb": "Listen",
-      "image": "public/verb/verb_card_listen.png",
+      "image": "/verb/verb_card_listen.png",
       "forms": [
         { "form": "listen", "points": 2 },
         { "form": "listens", "points": 2 },
@@ -57,7 +57,7 @@
     {
       "id": 805,
       "verb": "Run",
-      "image": "public/verb/verb_card_run.png",
+      "image": "/verb/verb_card_run.png",
       "forms": [
         { "form": "run", "points": 2 },
         { "form": "runs", "points": 2 },
@@ -68,7 +68,7 @@
     {
       "id": 806,
       "verb": "Talk",
-      "image": "public/verb/verb_card_talk.png",
+      "image": "/verb/verb_card_talk.png",
       "forms": [
         { "form": "talk", "points": 2 },
         { "form": "talks", "points": 2 },
@@ -79,7 +79,7 @@
     {
       "id": 807,
       "verb": "Train",
-      "image": "public/verb/verb_card_train.png",
+      "image": "/verb/verb_card_train.png",
       "forms": [
         { "form": "train", "points": 2 },
         { "form": "trains", "points": 2 },

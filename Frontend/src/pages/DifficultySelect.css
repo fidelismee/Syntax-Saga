@@ -4,8 +4,9 @@
     align-items: center;
     justify-content: center;
     max-width: 100%;
+    width: 2000px;
     padding: 40px 20px;
-    min-height: 100vh;
+    min-height: 10vh;
     background-color: #121212;
     color: #fff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

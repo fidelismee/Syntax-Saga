@@ -17,32 +17,35 @@ class Card(BaseModel):
     points: int
 
 class Character(BaseModel):
-    id: str
+    id: int
     name: str
-    description: str
-    ability: str
     image: str
-    health: int
+    HP: int
+    special_ability: str
 
-class GameInitRequest(BaseModel):
+class GameMoveRequest(BaseModel):
     botCharacter: Character
     botDeck: List[Card]
     difficulty: str
-    isFirstTurn: bool
 
-@app.post("/api/bot/init")
-async def init_bot_game(data: GameInitRequest):
+@app.post("/api/bot/move")
+async def bot_move(data: GameMoveRequest):
     persona = get_persona(data.difficulty, data.botCharacter)
     card_names = ", ".join([card.name for card in data.botDeck])
 
     prompt = f"""
-You are a bot named {data.botCharacter.name} with the ability: {data.botCharacter.ability}.
-You are playing a card-based grammar game. Your current hand consists of the following cards:
-{card_names}.
-You are playing on {data.difficulty} difficulty.
-You {'go first' if data.isFirstTurn else 'go second'}.
+You are a bot named {data.botCharacter.name}, with {data.botCharacter.HP} HP.
+Your special ability: {data.botCharacter.special_ability}
+You are playing a grammar-based card game.
+These are your available cards: {card_names}
 
-Wait for the player to make a move, then reply with a grammatically correct phrase or sentence using available cards in your hand. Prioritize full sentences if possible.
+Form a sentence using your cards. If it's strategic to skip your turn or activate your special ability, you may do so.
+Respond in JSON with the following format:
+{{
+  "skip_turn": true or false,
+  "played_cards": ["card1", "card2", ...],
+  "use_special_ability": true or false
+}}
 """
 
     response = requests.post(
@@ -61,15 +64,19 @@ Wait for the player to make a move, then reply with a grammatically correct phra
     )
 
     if response.status_code == 200:
-        reply = response.json()["choices"][0]["message"]["content"].strip()
-        return {"status": "ready", "response": reply}
+        try:
+            reply = response.json()["choices"][0]["message"]["content"].strip()
+            result = eval(reply) if reply.startswith('{') else {"skip_turn": False, "played_cards": [], "use_special_ability": False}
+            return {"status": "ok", "move": result}
+        except Exception as e:
+            return {"status": "error", "message": "Invalid JSON from DeepSeek", "raw": reply}
     else:
         return {"status": "error", "message": response.text}
 
 def get_persona(difficulty: str, character: Character) -> str:
     styles = {
-        "primary": "You are a playful primary school student who forms simple and basic sentences.",
-        "highschool": "You are a clever high school student with decent grammar skills and sentence structure.",
-        "university": "You are an eloquent university student who constructs complex, well-formed sentences."
+        "primary": "You are a playful primary school student. Use simple phrases and basic grammar.",
+        "highschool": "You are a smart high school student. Use intermediate grammar with clear structure.",
+        "university": "You are an advanced university student. Form complex, well-structured sentences."
     }
     return styles.get(difficulty, styles["primary"])

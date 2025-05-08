@@ -1,43 +1,56 @@
-/* Full height layout */
 body, html, #root {
   height: 100%;
   margin: 0;
   padding: 0;
   background-color: #111;
   color: white;
+  overflow-x: hidden;
 }
 
+/* Use flex layout for more control */
 .game-table {
-  display: grid;
-  grid-template-areas:
-    "botHand botHand"
-    "botChar botPlay"
-    "playerChar playerPlay"
-    "playerHand discard";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
+  display: flex;
+  width: 1900px;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  gap: 20px;
-  height: 100vh;
-  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  gap: 0; /* global gap removed */
 }
 
-.bot-hand {
-  grid-area: botHand;
+/* Bot and player sections stacked vertically */
+.section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 40px; /* spacing between character and play area */
+  margin-bottom: 20px; /* 👈 Adjust this to control vertical gap */
+}
+
+/* Drop zones */
+.bot-area, .player-area {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 1400px;
+  height: 120px; /* 👈 Adjust this height */
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  padding: 10px;
   gap: 10px;
-  flex-wrap: wrap;
 }
 
-.player-hand {
-  grid-area: playerHand;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
+.bot-area {
+  background-color: #fcf4e4;
 }
 
+.player-area {
+  background-color: #FFD700;
+}
+
+/* Character display */
 .character {
   text-align: center;
 }
@@ -47,14 +60,16 @@ body, html, #root {
   height: auto;
   border: 2px solid #ff9307;
   border-radius: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .character p {
   font-weight: bold;
   color: white;
+  margin: 0;
 }
 
+/* Cards */
 .card {
   width: 100px;
   height: 140px;
@@ -63,58 +78,41 @@ body, html, #root {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
 }
-
 .card:hover {
   transform: scale(1.05);
 }
 
-.player-area,
-.bot-area {
+.bot-hand, .player-hand {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 180px;
-  border: 2px dashed #ccc;
-  border-radius: 12px;
-  background-color: #f9f9f9;
-  padding: 10px;
   gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
-.player-area {
-  grid-area: playerPlay;
-  background-color: #e8f5e9;
+.bot-hand .card.back {
+  content: url('/backcard/backcard.png');
+  filter: brightness(0.9);
 }
 
-.bot-area {
-  grid-area: botPlay;
-  background-color: #fce4ec;
-}
-
-.bot-character {
-  grid-area: botChar;
-}
-
-.player-character {
-  grid-area: playerChar;
-}
-
+/* Bot move box */
 .bot-action-box {
-  grid-column: span 2;
-  margin-top: 10px;
+  margin-top: 12px;
   padding: 10px;
   background-color: #fff8e1;
   border: 1px solid #fbc02d;
   border-radius: 8px;
   text-align: center;
+  width: 80%;
 }
 
+/* Controls and discard */
 .game-controls {
-  grid-area: discard;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  margin-top: 20px;
 }
 
 .game-controls button {
@@ -146,4 +144,14 @@ body, html, #root {
 .discard-pile .card {
   width: 80px;
   height: 110px;
+  margin: 0 4px;
 }
+
+/* New container for cards to align them horizontally */
+.discard-pile .card-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+}
+
