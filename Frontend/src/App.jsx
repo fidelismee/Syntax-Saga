@@ -3,8 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CharacterSelect from './pages/CharacterSelect';
 import DifficultySelect from './pages/DifficultySelect';
-import Game from './pages/Game';
 import RPS from './pages/RPS';
+import Game from './pages/Game';
 
 export default function App() {
   return (

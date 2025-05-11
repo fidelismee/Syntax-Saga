@@ -14,28 +14,28 @@
     "special_ability": ""
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "Spellbinder",
     "image": "/character/character_spellbinder.png",
     "HP": 45,
     "special_ability": "Once per game, create a perfect sentence using all parts of speech for a massive one-time attack."
   },
   {
-    "id": 5,
+    "id": 4,
     "name": "Thief",
     "image": "/character/character_thief.png",
     "HP": 45,
     "special_ability": "May steal 1 card from opponent's discard pile per turn."
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "Warrior Mage",
     "image": "/character/character_warrior_mage.png",
     "HP": 45,
     "special_ability": "May switch 1 card with opponent per turn."
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Warrior",
     "image": "/character/character_warrior.png",
     "HP": 50,
