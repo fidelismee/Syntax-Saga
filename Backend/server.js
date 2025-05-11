@@ -71,21 +71,24 @@ function shuffle(arr) {
 // ✅ Rock Paper Scissors logic
 function playRockPaperScissors() {
   const choices = ['rock', 'paper', 'scissors'];
-  const playerChoice = choices[Math.floor(Math.random() * 3)];
-  const botChoice = choices[Math.floor(Math.random() * 3)];
+  let playerChoice, botChoice, result;
 
-  let result;
-  if (playerChoice === botChoice) {
-    result = 'draw';
-  } else if (
-    (playerChoice === 'rock' && botChoice === 'scissors') ||
-    (playerChoice === 'paper' && botChoice === 'rock') ||
-    (playerChoice === 'scissors' && botChoice === 'paper')
-  ) {
-    result = 'player';
-  } else {
-    result = 'bot';
-  }
+  do {
+    playerChoice = choices[Math.floor(Math.random() * 3)];
+    botChoice = choices[Math.floor(Math.random() * 3)];
+
+    if (playerChoice === botChoice) {
+      result = 'draw';
+    } else if (
+      (playerChoice === 'rock' && botChoice === 'scissors') ||
+      (playerChoice === 'paper' && botChoice === 'rock') ||
+      (playerChoice === 'scissors' && botChoice === 'paper')
+    ) {
+      result = 'player';
+    } else {
+      result = 'bot';
+    }
+  } while (result === 'draw');
 
   return { playerChoice, botChoice, result };
 }
