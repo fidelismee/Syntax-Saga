@@ -4,7 +4,9 @@
     gap: 20px;
     justify-content: center;
     margin-top: 20px;
-    width: 1440px;
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 20px;
   }
   
   .character-card {
@@ -13,12 +15,19 @@
     padding: 10px;
     width: 200px;
     text-align: center;
-    background-color: #2E2E2E;
+    background-color: #1A1A1A;
     color: #AF803C;
-    transition: transform 0.2s, border 0.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 0 10px rgba(175, 128, 60, 0.2);
     cursor: pointer;
   }
   
+  .character-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #AF803C;
+  border-color: #AF803C;
+  }
+
   .character-card img {
     width: 100%;
     height: auto;
@@ -26,20 +35,11 @@
   }
   
   .character-card.selected {
-    border-color: #2E2E2E;
+    border-color: #AF803C;
     transform: scale(1.05);
     box-shadow: 0 0 10px #AF803C;
   }
   
-  .confirm-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #AF803C;
-    color: #2E2E2E;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
   .character-container {
     display: flex;
     flex-direction: column;
@@ -51,4 +51,29 @@
     color: #AF803C;
     text-align: center;
   }
+
+  .confirm-button-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  }
+
+  .confirm-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #2E2E2E;
+    color: #AF803C;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .confirm-button:hover {
+  background-color: #2E2E2E;
+}
+
   
