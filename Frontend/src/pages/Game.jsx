@@ -168,7 +168,16 @@ function Game() {
           </div>
         </div>
       </div>
+
+      {/* Skip Turn Button */}
+      <div className="skip-button-container">
+        <button className="skip-button" onClick={() => console.log("⏭ Skip Turn Clicked!")}>
+        Skip Turn
+        </button>
+      </div>
     </div>
+
+    
   );
   
 }

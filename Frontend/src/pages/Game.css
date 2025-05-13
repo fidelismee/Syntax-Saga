@@ -10,11 +10,11 @@ body, html, #root {
 /* Use flex layout for more control */
 .game-table {
   display: flex;
-  width: 1900px;
+  width: 1440px;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: 'Aboreto', cursive;
   gap: 0; /* global gap removed */
 }
 
@@ -155,3 +155,24 @@ body, html, #root {
   gap: 8px;
 }
 
+.skip-button-container {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+}
+
+.skip-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #8b0000; /* deep medieval red */
+  border: 2px solid gold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.skip-button:hover {
+  background-color: #a30000;
+}
