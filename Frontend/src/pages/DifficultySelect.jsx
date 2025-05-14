@@ -10,6 +10,15 @@ function DifficultySelect() {
   const [playerDeck, setPlayerDeck] = useState([]);
   const [botDeck, setBotDeck] = useState([]);
 
+  const BackButton = () => {
+  const navigate = useNavigate();
+  return (
+    <button className="back-button" onClick={() => navigate(-1)}>
+      ← Back
+    </button>
+  );
+  };
+  
   useEffect(() => {
     // Fetch 5 shuffled cards for both player and bot
     fetch('http://localhost:3000/api/deal')
@@ -44,13 +53,13 @@ function DifficultySelect() {
 
       <div className="character-preview">
         <div className="character-block">
-          <h3>You Selected:</h3>
+          <h3>You Chose:</h3>
           <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
           <p>{playerCharacter.name}</p>
         </div>
 
         <div className="character-block">
-          <h3>Bot Selected:</h3>
+          <h3>Bot Chose:</h3>
           <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
           <p>{botCharacter.name}</p>
         </div>
