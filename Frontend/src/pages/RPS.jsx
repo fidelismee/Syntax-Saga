@@ -9,11 +9,17 @@ function RPS() {
 
   const { playerCharacter, botCharacter, difficulty, playerDeck, botDeck } = location.state || {};
   const [outcome, setOutcome] = useState(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/rps')
       .then(res => res.json())
-      .then(data => setOutcome(data))
+      .then(data => {
+      setTimeout(() => {
+        setOutcome(data);     // delay outcome reveal
+        setIsReady(true);     // mark as ready to render
+      }, 2000); // 2000 ms = 2 seconds
+    })
       .catch(err => console.error('❌ Failed to play RPS:', err));
   }, []);
 
@@ -30,7 +36,14 @@ function RPS() {
     });
   }
 
-  if (!outcome) return <p>Playing Rock Paper Scissors...</p>;
+  if (!isReady) {
+    return (
+      <div className="rps-loading-screen">
+        <h2 className="rps-loading-text">Playing Rock Paper Scissors...</h2>
+      </div>
+    );
+  }
+
 
   return (
     <div className="rps-container">
