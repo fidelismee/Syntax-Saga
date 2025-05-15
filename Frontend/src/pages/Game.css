@@ -31,6 +31,7 @@ body, html, #root {
 
 /* Drop zones */
 .bot-area, .player-area {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,6 +42,43 @@ body, html, #root {
   background-color: #2E2E2E;
   padding: 10px;
   gap: 10px;
+}
+
+.dropzone-label {
+  position: absolute;
+  pointer-events: none;
+  color: #AF803C;
+  font-family: 'Cinzel', serif;
+  font-size: 50px;
+  text-align: center;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.4;
+  letter-spacing: 1.5px;
+  text-shadow:
+    0 0 4px #AF803C,
+    0 0 8px #FFD700;
+  animation: labelGlow 4s ease-in-out infinite;
+}
+/* 👇 This flips the bot label upside down */
+.bot-label {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+@keyframes labelGlow {
+  0%, 100% {
+    opacity: 0.3;
+    text-shadow:
+      0 0 4px #AF803C,
+      0 0 8px #FFD700;
+  }
+  50% {
+    opacity: 0.6;
+    text-shadow:
+      0 0 10px #FFD700,
+      0 0 15px #FFCC00;
+  }
 }
 
 .bot-area {
@@ -83,6 +121,92 @@ body, html, #root {
   transform: scale(1.05);
 }
 
+.bot-hand-row,
+.player-hand-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+/* Pile container */
+.bot-pile, .player-pile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.pile-card {
+  width: 80px;
+  height: 110px;
+  border: 2px solid #AF803C;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+/* Label under pile */
+.pile-label {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: #AF803C;
+  margin-top: 4px;
+}
+
+/* Bot Discard Zone */
+.bot-discard-zone {
+  position: absolute;
+  right: 800px;
+  top: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Player Discard Zone */
+.player-discard-zone {
+  position: absolute;
+  right: 800px;
+  bottom: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Label in center of discard */
+.discard-label {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: #AF803C;
+  letter-spacing: 2px;
+  text-shadow: 0 0 6px gold;
+  margin-bottom: 10px;
+}
+
+/* Cards in discard pile */
+.discard-slot {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.discard-card {
+  width: 80px;
+  height: 110px;
+  border: 2px solid #AF803C;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.4);
+}
+
+/* Reuse .discard-slot and .discard-card styles */
+
+/* Flipped label for bot discard */
+.flipped-label {
+  transform: rotate(180deg);
+  writing-mode: horizontal-tb;
+}
+
 .bot-hand, .player-hand {
   display: flex;
   justify-content: center;
@@ -105,6 +229,29 @@ body, html, #root {
   border-radius: 8px;
   text-align: center;
   width: 80%;
+}
+
+.skill-button-container {
+  position: absolute;
+  right: 400px;
+  top: 90%;
+  transform: translateY(-50%);
+  z-index: 999;
+}
+
+.skill-button {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 30px solid #AF803C; /* gold triangle */
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.skill-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px #AF803C;
 }
 
 /* Controls and discard */

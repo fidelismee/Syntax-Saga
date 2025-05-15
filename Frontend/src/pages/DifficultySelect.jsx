@@ -48,9 +48,7 @@ function DifficultySelect() {
   
 
   return (
-    <div className="difficulty-container">
-      <h2>Select Bot Difficulty</h2>
-
+    <div className="difficulty-container">  
       <div className="character-preview">
         <div className="character-block">
           <h3>You Chose:</h3>
@@ -65,6 +63,8 @@ function DifficultySelect() {
         </div>
       </div>
 
+      <h2>Select Bot Difficulty</h2>
+      
       <div className="difficulty-buttons">
         <button onClick={() => startGameWithDifficulty('primary')}>
           Primary School
