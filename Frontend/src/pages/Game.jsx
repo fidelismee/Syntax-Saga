@@ -53,7 +53,6 @@ function Game() {
     const card = playerDeck[cardIndex];
     if (target === 'player') {
       setPlayerPlayArea(prev => [...prev, card]);
-
       const newDeck = [...playerDeck];
       newDeck.splice(cardIndex, 1);
       setPlayerDeck(newDeck);
@@ -66,8 +65,6 @@ function Game() {
 
   const handleSubmit = () => {
     if (playerPlayArea.length === 0) return;
-    console.log('📝 Submitted:', playerPlayArea);
-
     setPlayerDiscard(playerPlayArea);
     setPlayerPlayArea([]);
   };
@@ -78,182 +75,118 @@ function Game() {
 
   return (
     <div className="game-table">
+      <div className="board-columns">
+        {/* Left Column: Deck Piles */}
+        <div className="board-left">
+          <div className="bot-pile">
+            <img src="http://localhost:3000/backcard/backcard.png" alt="Bot Deck" className="pile-card" />
+            <p className="pile-label">Bot Deck</p>
+          </div>
+          <div className="player-pile">
+            <img src="http://localhost:3000/backcard/backcard.png" alt="Your Deck" className="pile-card" />
+            <p className="pile-label">Your Deck</p>
+          </div>
+        </div>
 
-      {/* Bot Discard Zone */}
-      <div className="bot-discard-zone">
-        <div className="discard-label flipped-label">DISCARD</div>
-        <div className="discard-slot">
-        {botDiscard.map((card, i) => (
-          <img
-            key={i}
-            src={`http://localhost:3000${card.image}`}
-            alt={card.name}
-            className="card discard-card"
-          />
-        ))}
+        {/* Center Column: Characters + Dropzones + Hands */}
+        <div className="board-center">
+          {/* Bot Section */}
+          <div className="section">
+            <div className="character bot-character">
+              <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
+              <p>{botCharacter.name}</p>
+            </div>
+            <div className="play-area bot-area">
+              <div className="dropzone-label bot-label">PHRASE / SENTENCE</div>
+              {botPlayArea.map((card, index) => (
+                <img key={index} src={`http://localhost:3000${card.image}`} alt={card.name} className="card" />
+              ))}
+            </div>
+          </div>
+
+          {/* Player Section */}
+          <div className="section">
+            <div className="character player-character">
+              <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
+              <p>{playerCharacter.name}</p>
+            </div>
+
+            <div
+              className="play-area player-area"
+              onDragOver={e => e.preventDefault()}
+              onDrop={e => handleDrop(e, 'player')}
+            >
+              <div className="dropzone-label">PHRASE / SENTENCE</div>
+              {playerPlayArea.map((card, index) => (
+                <img key={index} src={`http://localhost:3000${card.image}`} alt={card.name} className="card" />
+              ))}
+            </div>
+          </div>
+
+          {/* Player Hand */}
+          <div className="player-hand-row">
+            <div className="player-hand">
+              {playerDeck.map((card, index) => (
+                <img
+                  key={index}
+                  src={`http://localhost:3000${card.image}`}
+                  alt={card.name}
+                  className="card player-card"
+                  draggable
+                  onDragStart={e => handleDragStart(e, index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Discard Zones */}
+        <div className="board-right">
+          <div className="bot-discard-zone">
+            <p className="discard-label flipped-label">DISCARD</p>
+            <div className="discard-slot">
+              {botDiscard.slice(-5).map((card, i) => (
+                <img key={i} src={`http://localhost:3000${card.image}`} alt={card.name} className="card discard-card" />
+              ))}
+            </div>
+          </div>
+          <div className="player-discard-zone">
+            <p className="discard-label">DISCARD</p>
+            <div className="discard-slot">
+              {playerDiscard.slice(-5).map((card, i) => (
+                <img key={i} src={`http://localhost:3000${card.image}`} alt={card.name} className="card discard-card" />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="bot-hand-row">
-        {/* Bot Pile */}
-        <div className="bot-pile">
-          <img
-          src="http://localhost:3000/backcard/backcard.png"
-          alt="Bot Deck"
-          className="pile-card"
-          />
-          <p className="pile-label">Bot Deck</p>
-        </div>
-        
-        {/* Bot Hand */}
-        <div className="bot-hand">
-          {botDeck.map((_, index) => (
-            <img
-              key={index}
-              src="http://localhost:3000/backcard/backcard.png"
-              alt="Back of card"
-              className="card bot-card"
-            />
-          ))}
-        </div>
-      </div>
-  
-      {/* Bot Character and Dropzone */}
-      <div className="section">
-        <div className="character bot-character">
-          <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
-          <p>{botCharacter.name}</p>
-        </div>
-        <div className="play-area bot-area">
-          <div className="dropzone-label bot-label">PHRASE / SENTENCE</div>
-
-          {botPlayArea.map((card, index) => (
-            <img
-              key={index}
-              src={`http://localhost:3000${card.image}`}
-              alt={card.name}
-              className="card"
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Player Character and Dropzone */}
-      <div className="section">
-        <div className="character player-character">
-          <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
-          <p>{playerCharacter.name}</p>
-      </div>
-
-      <div className="skill-button-container"
-        onClick={() => console.log('🛡️ Skill Activated!')}
-        title="Activate Skill"
-        >
-      <div className="skill-button"></div>
-      
-        </div>
-        <div
-          className="play-area player-area"
-          onDragOver={e => e.preventDefault()}
-          onDrop={e => handleDrop(e, 'player')}
-        >
-          <div className="dropzone-label">PHRASE / SENTENCE</div>
-
-          {playerPlayArea.map((card, index) => (
-            <img
-              key={index}
-              src={`http://localhost:3000${card.image}`}
-              alt={card.name}
-              className="card"
-            />
-          ))}
-        </div>
-      </div>
-  
-    <div className="player-hand-row">
-      {/* Player Pile */}
-      <div className="player-pile">
-        <img
-        src="http://localhost:3000/backcard/backcard.png"
-        alt="Player Deck"
-        className="pile-card"
-          />
-        <p className="pile-label">Your Deck</p>
-      </div>
-
-      {/* Player Hand */}
-      <div className="player-hand">
-        {playerDeck.map((card, index) => (
-          <img
-            key={index}
-            src={`http://localhost:3000${card.image}`}
-            alt={card.name}
-            className="card player-card"
-            draggable
-            onDragStart={e => handleDragStart(e, index)}
-          />
-        ))}
-      </div>
-    </div>
-  
-    {/* Player Discard Zone */}
-    <div className="player-discard-zone">
-      <div className="discard-label">DISCARD</div>
-      <div className="discard-slot">
-      {playerDiscard.map((card, i) => (
-        <img
-          key={i}
-          src={`http://localhost:3000${card.image}`}
-          alt={card.name}
-          className="card discard-card"
-        />
-      ))}
-      </div>
-    </div>
-
-      {/* Bot Action Display */}
+      {/* Bot Action Box */}
       {botAction && (
         <div className="bot-action-box">
           <p><strong>Bot played:</strong> {botAction}</p>
         </div>
       )}
-  
-      {/* Submit & Discard Area */}
-      <div className="game-controls">
+
+      {/* Controls */}
+      <div className="controls-row">
         <button onClick={handleSubmit}>Submit Sentence</button>
-        
-        <div className="discard-pile">
-          <p>Card Discard</p>
-          <div className="card-row">
-            {playerDiscard.map((card, i) => (
-              <img
-                key={i}
-                src={`http://localhost:3000${card.image}`}
-                alt={card.name}
-                className="card"
-              />
-            ))}
+
+        <div className="button-row">
+          <button className="skip-button" onClick={() => console.log("⏭ Skip Turn Clicked!")}>
+          Skip Turn
+          </button>
+          <div
+            className="skill-button-container"
+            onClick={() => console.log('🛡️ Skill Activated!')}
+            title="Activate Skill"
+          >
+            <div className="skill-button"></div>
           </div>
         </div>
       </div>
-
-      {/* Skip Turn Button */}
-      <div className="skip-button-container">
-        <button className="skip-button" onClick={() => console.log("⏭ Skip Turn Clicked!")}>
-        Skip Turn
-        </button>
-      </div>
-
-    {/* Activate Skill Button */}
-      <div className="skip-button-container">
-        <button className="skip-button" onClick={() => console.log("⏭ Skip Turn Clicked!")}>
-        Skip Turn
-        </button>
-      </div>
     </div>
-    
   );
-  
 }
 
 export default Game;
