@@ -12,8 +12,9 @@ function DifficultySelect() {
   const [playerDeck, setPlayerDeck] = useState([]);
   const [botDeck, setBotDeck] = useState([]);
   const [playerPile, setPlayerPile] = useState([]);
-const [botPile, setBotPile] = useState([]);
-
+  const [botPile, setBotPile] = useState([]);
+  const [focusedChar, setFocusedChar] = useState(null);
+  const [showFocusOverlay, setShowFocusOverlay] = useState(false);
 
   const BackButton = () => {
   const navigate = useNavigate();
@@ -24,6 +25,16 @@ const [botPile, setBotPile] = useState([]);
   );
   };
   
+  function onDoubleClick(char) {
+    setFocusedChar(char);
+    setShowFocusOverlay(true);
+  }
+
+  function closeOverlay() {
+    setFocusedChar(null);
+    setShowFocusOverlay(false);
+  }
+
 useEffect(() => {
   fetch('http://localhost:3000/api/deal')
     .then(res => res.json())
@@ -62,13 +73,19 @@ navigate('/rps', {
   return (
     <div className="difficulty-container">  
       <div className="character-preview">
-        <div className="character-block">
+        <div
+          className="character-block"
+          onDoubleClick={() => onDoubleClick(playerCharacter)}
+        >
           <h3>You Chose:</h3>
           <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
           <p>{playerCharacter.name}</p>
         </div>
 
-        <div className="character-block">
+        <div
+          className="character-block"
+          onDoubleClick={() => onDoubleClick(botCharacter)}
+        >
           <h3>Bot Chose:</h3>
           <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
           <p>{botCharacter.name}</p>
@@ -88,6 +105,16 @@ navigate('/rps', {
           University
         </button>
       </div>
+
+      {showFocusOverlay && focusedChar && (
+        <div className="character-overlay" onClick={closeOverlay}>
+          <img
+            src={`http://localhost:3000${focusedChar.image}`}
+            alt={focusedChar.name}
+            className="overlay-image"
+          />
+        </div>
+      )}
     </div>
   );
 }
