@@ -1,17 +1,16 @@
 [
-    {
-      "id": 601,
-      "type": "Pronoun",
-      "words": ["he", "she", "they"],
-      "points": 3,
-      "image": "/pronoun/pronoun_card_heshethey.png"
-    },
-    {
-      "id": 602,
-      "type": "Pronoun",
-      "words": ["I"],
-      "points": 3,
-      "image": "/pronoun/pronoun_card_i.png"
-    }
-  ]
-  
+  {
+    "id": 601,
+    "type": "pronoun",  
+    "value": ["he", "she", "they"],  
+    "points": 3,
+    "image": "/pronoun/pronoun_card_heshethey.png"
+  },
+  {
+    "id": 602,
+    "type": "pronoun",  
+    "value": ["I"],  
+    "points": 3,
+    "image": "/pronoun/pronoun_card_i.png"
+  }
+]
