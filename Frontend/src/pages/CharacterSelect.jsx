@@ -9,6 +9,7 @@ function CharacterSelect() {
   const [selected, setSelected] = useState(null);
   const [hoveredChar, setHoveredChar] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [focusChar, setFocusChar] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +18,10 @@ function CharacterSelect() {
       .then(data => setCharacters(data))
       .catch(err => console.error('Failed to fetch characters:', err));
   }, []);
+
+  function handleDoubleClick(char) {
+  setFocusChar(char);
+  }
 
   function handleSelect(id) {
     setSelected(id);
@@ -63,6 +68,7 @@ function CharacterSelect() {
             className={`character-card ${selected === char.id ? 'selected' : ''}`}
             onMouseEnter={() => onHoverStart(char)}
             onMouseLeave={onHoverEnd}
+            onDoubleClick={() => handleDoubleClick(char)}
           >
             <img
               src={`http://localhost:3000${char.image}`}
@@ -77,6 +83,16 @@ function CharacterSelect() {
       <button className="confirm-button" onClick={handleConfirm}>
         Confirm Selection
       </button>
+
+      {focusChar && (
+        <div className="focus-overlay" onClick={() => setFocusChar(null)}>
+          <img
+            src={`http://localhost:3000${focusChar.image}`}
+            alt={focusChar.name}
+            className="focus-image"
+          />
+        </div>
+      )}
 
       {/* 🌌 Full-screen hover overlay */}
       {showOverlay && hoveredChar && (
