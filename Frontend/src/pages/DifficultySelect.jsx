@@ -1,3 +1,5 @@
+// Frontend\src\pages\DifficultySelect.jsx
+
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './DifficultySelect.css';
@@ -9,6 +11,9 @@ function DifficultySelect() {
   const { playerCharacter, botCharacter } = location.state || {};
   const [playerDeck, setPlayerDeck] = useState([]);
   const [botDeck, setBotDeck] = useState([]);
+  const [playerPile, setPlayerPile] = useState([]);
+const [botPile, setBotPile] = useState([]);
+
 
   const BackButton = () => {
   const navigate = useNavigate();
@@ -19,31 +24,38 @@ function DifficultySelect() {
   );
   };
   
-  useEffect(() => {
-    // Fetch 5 shuffled cards for both player and bot
-    fetch('http://localhost:3000/api/deal')
-      .then(res => res.json())
-      .then(data => {
-        setPlayerDeck(data.playerDeck.slice(0, 5));
-        setBotDeck(data.botDeck.slice(0, 5));
-      })
-      .catch(err => console.error('❌ Failed to fetch decks:', err));
-  }, []);
+useEffect(() => {
+  fetch('http://localhost:3000/api/deal')
+    .then(res => res.json())
+    .then(data => {
+      setPlayerDeck(data.playerDeck.slice(0, 5));
+      setBotDeck(data.botDeck.slice(0, 5));
+
+      // Send initial piles to game
+      setPlayerPile(data.playerDeck.slice(5));
+      setBotPile(data.botDeck.slice(5));
+    })
+    .catch(err => console.error('❌ Failed to fetch decks:', err));
+}, []);
+
 
   if (!playerCharacter || !botCharacter) {
     return <p>Missing character selection. Please go back and choose again.</p>;
   }
 
   function startGameWithDifficulty(difficulty) {
-    navigate('/rps', {
-      state: {
-        playerCharacter,
-        botCharacter,
-        difficulty,
-        playerDeck,
-        botDeck
-      }
-    });
+navigate('/rps', {
+  state: {
+    playerCharacter,
+    botCharacter,
+    difficulty,
+    playerDeck,
+    botDeck,
+    playerPile,
+    botPile
+  }
+});
+
   }
   
 

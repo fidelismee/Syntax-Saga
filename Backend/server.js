@@ -115,10 +115,34 @@ app.get('/api/deal', (req, res) => {
 });
 
 // ✅ API: Play RPS
-app.get('/api/rps', (req, res) => {
-  const outcome = playRockPaperScissors();
-  res.json(outcome);
+app.post('/api/rps', (req, res) => {
+  const playerChoice = req.body.playerChoice;
+  const choices = ['rock', 'paper', 'scissors'];
+
+  let result = 'draw';
+  let botChoice;
+  let attempts = 0;
+
+  while (result === 'draw' && attempts < 10) {
+    botChoice = choices[Math.floor(Math.random() * 3)];
+    if (playerChoice === botChoice) {
+      result = 'draw';
+    } else if (
+      (playerChoice === 'rock' && botChoice === 'scissors') ||
+      (playerChoice === 'paper' && botChoice === 'rock') ||
+      (playerChoice === 'scissors' && botChoice === 'paper')
+    ) {
+      result = 'player';
+    } else {
+      result = 'bot';
+    }
+    attempts++;
+  }
+
+  res.json({ playerChoice, botChoice, result, attempts });
 });
+
+
 
 // ✅ Start the server
 app.listen(PORT, () => {
