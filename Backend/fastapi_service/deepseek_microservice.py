@@ -8,6 +8,7 @@ import requests
 from dotenv import load_dotenv
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from typing import Union
 
 app = FastAPI()
 
@@ -29,7 +30,7 @@ DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 class Card(BaseModel):
     id: int
     type: str
-    value: Optional[str] = None         # e.g. "Beautiful"
+    value: Optional[Union[str, List[str]]] = None         # e.g. "Beautiful"
     name: Optional[str] = None          # e.g. "Pronoun Parry" (for special cards)
     image: str
     points: Optional[int] = None
@@ -54,7 +55,9 @@ class GameMoveRequest(BaseModel):
 # 🔧 Card Normalizer
 # -----------------------------
 def normalize_card(card: Card) -> str:
-    if card.value:
+    if isinstance(card.value, list) and card.value:
+        return card.value[0]  # Take the first string from the list
+    elif isinstance(card.value, str):
         return card.value
     elif card.name:
         return card.name
@@ -62,6 +65,7 @@ def normalize_card(card: Card) -> str:
         return card.conjugations[0]["form"]
     else:
         return "[Unknown]"
+
 
 # -----------------------------
 # 🤖 Bot Move Endpoint

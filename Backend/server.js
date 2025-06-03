@@ -34,7 +34,8 @@ cardFolders.forEach(folder => {
   app.use(`/${folder}`, express.static(path.join(__dirname, `../public/${folder}`)));
 });
 
-// ✅ Load all card data from /data
+/*
+// ✅ Load all card data from /data (including special ability)
 function loadCardDeck() {
   const folders = cardFolders;
   let deck = [];
@@ -57,6 +58,32 @@ function loadCardDeck() {
 
   return deck;
 }
+*/
+
+// Load all card data from /data
+function loadCardDeck() {
+  const folders = cardFolders.filter(folder => folder !== 'specialability');
+  let deck = [];
+
+  folders.forEach(folder => {
+    const folderPath = path.join(__dirname, `../data/${folder}`);
+    if (fs.existsSync(folderPath)) {
+      const files = fs.readdirSync(folderPath);
+      files.forEach(file => {
+        const filePath = path.join(folderPath, file);
+        try {
+          const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+          deck = deck.concat(content);
+        } catch (err) {
+          console.warn(`❌ Failed to load or parse ${filePath}:`, err.message);
+        }
+      });
+    }
+  });
+
+  return deck;
+}
+
 
 // ✅ Helper: Shuffle array
 function shuffle(arr) {
