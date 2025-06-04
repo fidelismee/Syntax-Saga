@@ -1,0 +1,47 @@
+[
+  {
+    "id": 701,
+    "type": "specialAbility",
+    "name": "Fragment Freeze",
+    "image": "/specialability/specialability_fragmentfreeze.png",
+    "frequency": "Once Per Turn",
+    "effect": "If opponent creates a sentence fragment (incomplete sentence), stun them for a turn (they cannot attack).",
+    "category": "defensive"
+  },
+  {
+    "id": 702,
+    "type": "specialAbility",
+    "name": "Pronoun Parry",
+    "image": "/specialability/specialability_pronounparry.png",
+    "frequency": "Once Per Turn",
+    "effect": "Block an incoming attack from the opponent.",
+    "category": "defensive"
+  },
+  {
+    "id": 703,
+    "type": "specialAbility",
+    "name": "Rapid Rewrite",
+    "image": "/specialability/specialability_rapidrewrite.png",
+    "frequency": "Once Per Turn",
+    "effect": "Discard and redraw 2 cards.",
+    "category": "utility"
+  },
+  {
+    "id": 704,
+    "type": "specialAbility",
+    "name": "Syllable Steal",
+    "image": "/specialability/specialability_syllablesteal.png",
+    "frequency": "Once Per Turn",
+    "effect": "Choose one word from the opponent's last sentence and 'steal' it into your hand for use later.",
+    "category": "offensive"
+  },
+  {
+    "id": 705,
+    "type": "specialAbility",
+    "name": "Tense Trap",
+    "image": "/specialability/specialability_tensetrap.png",
+    "frequency": "Once Per Turn",
+    "effect": "Confuse the opponent: they must use past tense next turn, or else lose 2 cards.",
+    "category": "offensive"
+  }
+]

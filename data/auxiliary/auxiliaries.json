@@ -1,0 +1,23 @@
+[
+  {
+    "id": 301,
+    "type": "auxiliary",
+    "value": ["is", "was"],
+    "points": 2,
+    "image": "/auxiliary/auxiliary_card.png"
+  },
+  {
+    "id": 302,
+    "type": "auxiliary",
+    "value": ["are", "were"],
+    "points": 2,
+    "image": "/auxiliary/auxiliary_card.png"
+  },
+  {
+    "id": 303,
+    "type": "auxiliary",
+    "value": ["am"],
+    "points": 3,
+    "image": "/auxiliary/auxiliary_card.png"
+  }
+]
