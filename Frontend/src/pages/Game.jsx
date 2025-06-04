@@ -47,7 +47,7 @@ function Game() {
     };
 
     try {
-      const response = await fetch('http://localhost:8001/api/bot/move', {
+      const response = await fetch('/api/bot/move', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -69,7 +69,7 @@ function Game() {
 
           // 👉 Evaluate bot's sentence and damage player
           try {
-            const evalRes = await fetch('http://localhost:8000/evaluate', {
+            const evalRes = await fetch('/evaluate', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ cards: playedCardObjects })
@@ -107,7 +107,7 @@ function Game() {
     if (playerPlayArea.length === 0) return;
 
     try {
-      const response = await fetch('http://localhost:8000/evaluate', {
+      const response = await fetch('/evaluate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cards: playerPlayArea })
@@ -194,12 +194,12 @@ return (
     <div className="board-columns">
       <div className="board-left">
         <div className="bot-pile">
-          <img src="http://localhost:3000/backcard/backcard.png" alt="Bot Deck" className="pile-card" />
+          <img src="/backcard/backcard.png" alt="Bot Deck" className="pile-card" />
           <p className="pile-label">Bot Deck</p>
         </div>
 
         <div className="player-pile">
-          <img src="http://localhost:3000/backcard/backcard.png" alt="Your Deck" className="pile-card" />
+          <img src="/backcard/backcard.png" alt="Your Deck" className="pile-card" />
           <p className="pile-label">Your Deck</p>
         </div>
       </div>
@@ -210,7 +210,7 @@ return (
             {botDeck.map((_, index) => (
               <img
                 key={index}
-                src="http://localhost:3000/backcard/backcard.png"
+                src="/backcard/backcard.png"
                 alt="Bot Card"
                 className="card"
               />
@@ -219,7 +219,7 @@ return (
 
           <div className="section">
             <div className="character bot-character">
-              <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
+              <img src={`${botCharacter.image}`} alt={botCharacter.name} />
               <p>{botCharacter.name}</p>
               <p className="health-amount">{botHealth} HP</p>
               <div className="health-bar-container">
@@ -230,7 +230,7 @@ return (
             <div className="play-area bot-area">
               <div className="dropzone-label bot-label">PHRASE / SENTENCE</div>
               {botPlayArea.map((card, index) => (
-                <img key={index} src={`http://localhost:3000${card.image}`} alt={card.name} className="card" />
+                <img key={index} src={`${card.image}`} alt={card.name} className="card" />
               ))}
             </div>
           </div>
@@ -238,7 +238,7 @@ return (
 
         <div className="section">
           <div className="character player-character">
-            <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
+            <img src={`${playerCharacter.image}`} alt={playerCharacter.name} />
             <p>{playerCharacter.name}</p>
             <p className="health-amount">{playerHealth} HP</p>
             <div className="health-bar-container">
@@ -253,7 +253,7 @@ return (
           >
             <div className="dropzone-label">PHRASE / SENTENCE</div>
             {playerPlayArea.map((card, index) => (
-              <img key={index} src={`http://localhost:3000${card.image}`} alt={card.name} className="card" />
+              <img key={index} src={`${card.image}`} alt={card.name} className="card" />
             ))}
           </div>
         </div>
@@ -263,7 +263,7 @@ return (
             {playerDeck.map((card, index) => (
               <img
                 key={index}
-                src={`http://localhost:3000${card.image}`}
+                src={`${card.image}`}
                 alt={card.name}
                 className="card player-card"
                 draggable={turn === 'player'}
@@ -280,7 +280,7 @@ return (
           <p className="discard-label flipped-label">DISCARD</p>
           <div className="discard-slot">
             {botDiscard.slice(-5).map((card, i) => (
-              <img key={i} src={`http://localhost:3000${card.image}`} alt={card.name} className="card discard-card" />
+              <img key={i} src={`${card.image}`} alt={card.name} className="card discard-card" />
             ))}
           </div>
         </div>
@@ -289,7 +289,7 @@ return (
           <p className="discard-label">DISCARD</p>
           <div className="discard-slot">
             {playerDiscard.slice(-5).map((card, i) => (
-              <img key={i} src={`http://localhost:3000${card.image}`} alt={card.name} className="card discard-card" />
+              <img key={i} src={`${card.image}`} alt={card.name} className="card discard-card" />
             ))}
           </div>
         </div>
@@ -323,7 +323,7 @@ return (
     {showOverlay && hoveredCard && (
       <div className="card-overlay" onClick={closeOverlay}>
         <img
-          src={`http://localhost:3000${hoveredCard.image}`}
+          src={`${hoveredCard.image}`}
           alt={hoveredCard.name}
           className="card-overlay-image"
         />

@@ -13,7 +13,7 @@ function CharacterSelect() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/characters')
+    fetch('/api/characters')
       .then(res => res.json())
       .then(data => setCharacters(data))
       .catch(err => console.error('Failed to fetch characters:', err));
@@ -71,7 +71,7 @@ function CharacterSelect() {
             onDoubleClick={() => handleDoubleClick(char)}
           >
             <img
-              src={`http://localhost:3000${char.image}`}
+              src={`${char.image}`}
               alt={char.name}
               className="character-image"
             />
@@ -87,7 +87,7 @@ function CharacterSelect() {
       {focusChar && (
         <div className="focus-overlay" onClick={() => setFocusChar(null)}>
           <img
-            src={`http://localhost:3000${focusChar.image}`}
+            src={`${focusChar.image}`}
             alt={focusChar.name}
             className="focus-image"
           />
@@ -98,7 +98,7 @@ function CharacterSelect() {
       {showOverlay && hoveredChar && (
         <div className="character-overlay" onClick={onHoverEnd}>
           <img
-            src={`http://localhost:3000${hoveredChar.image}`}
+            src={`${hoveredChar.image}`}
             alt={hoveredChar.name}
             className="overlay-image"
           />

@@ -27,7 +27,7 @@ function submitRPS(choice) {
   setPlayerChoice(choice);
 
   function playRPS() {
-    fetch('http://localhost:3000/api/rps', {
+    fetch('/api/rps', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ playerChoice: choice })

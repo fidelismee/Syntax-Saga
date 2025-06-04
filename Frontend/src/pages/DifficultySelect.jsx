@@ -36,7 +36,7 @@ function DifficultySelect() {
   }
 
 useEffect(() => {
-  fetch('http://localhost:3000/api/deal')
+  fetch('/api/deal')
     .then(res => res.json())
     .then(data => {
       setPlayerDeck(data.playerDeck.slice(0, 5));
@@ -78,7 +78,7 @@ navigate('/rps', {
           onDoubleClick={() => onDoubleClick(playerCharacter)}
         >
           <h3>You Chose:</h3>
-          <img src={`http://localhost:3000${playerCharacter.image}`} alt={playerCharacter.name} />
+          <img src={`${playerCharacter.image}`} alt={playerCharacter.name} />
           <p>{playerCharacter.name}</p>
         </div>
 
@@ -87,7 +87,7 @@ navigate('/rps', {
           onDoubleClick={() => onDoubleClick(botCharacter)}
         >
           <h3>Bot Chose:</h3>
-          <img src={`http://localhost:3000${botCharacter.image}`} alt={botCharacter.name} />
+          <img src={`${botCharacter.image}`} alt={botCharacter.name} />
           <p>{botCharacter.name}</p>
         </div>
       </div>
@@ -109,7 +109,7 @@ navigate('/rps', {
       {showFocusOverlay && focusedChar && (
         <div className="character-overlay" onClick={closeOverlay}>
           <img
-            src={`http://localhost:3000${focusedChar.image}`}
+            src={`${focusedChar.image}`}
             alt={focusedChar.name}
             className="overlay-image"
           />
