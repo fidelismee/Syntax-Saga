@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CharacterSelect.css';
 
 function CharacterSelect() {
   const [characters, setCharacters] = useState([]);
@@ -13,7 +12,7 @@ function CharacterSelect() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/api/characters')
+    fetch('http://localhost:3000/api/characters')
       .then(res => res.json())
       .then(data => setCharacters(data))
       .catch(err => console.error('Failed to fetch characters:', err));
@@ -57,15 +56,17 @@ function CharacterSelect() {
   }
 
   return (
-    <div className="character-container">
-      <h2 className="character-title">Select Your Character</h2>
+    <div className="w-full min-h-screen bg-black text-gold flex flex-col items-center justify-start py-5 px-5 box-border max-w-1440px mx-auto">
+      <h2 className="text-4xl font-bold mb-8">Select Your Character</h2>
 
-      <div className="character-grid">
+      <div className="flex flex-wrap justify-center gap-4 w-full max-w-1440px px-5 box-border">
         {characters.map(char => (
           <div
             key={char.id}
             onClick={() => handleSelect(char.id)}
-            className={`character-card ${selected === char.id ? 'selected' : ''}`}
+            className={`w-50 h-90 flex flex-col justify-between overflow-hidden border-2 border-dark-100 rounded-lg p-2.5 text-center bg-dark-300 text-gold transition-all duration-300 ease-in-out cursor-pointer shadow-md hover:scale-105 hover:shadow-lg hover:border-gold hover:text-shadow-[0_0_5px_#AF803C,0_0_10px_#AF803C,0_0_15px_#AF803C,0_0_20px_#AF803C] ${
+              selected === char.id ? 'border-gold scale-105 shadow-gold text-shadow-[0_0_5px_#AF803C,0_0_10px_#AF803C,0_0_15px_#AF803C,0_0_20px_#AF803C]' : ''
+            }`}
             onMouseEnter={() => onHoverStart(char)}
             onMouseLeave={onHoverEnd}
             onDoubleClick={() => handleDoubleClick(char)}
@@ -73,34 +74,43 @@ function CharacterSelect() {
             <img
               src={`${char.image}`}
               alt={char.name}
-              className="character-image"
+              className="w-full h-auto rounded-lg"
             />
-            <p className="character-name">{char.name}</p>
+            <p className="text-xl mt-2">{char.name}</p>
           </div>
         ))}
       </div>
 
-      <button className="confirm-button" onClick={handleConfirm}>
+      <button 
+        className="mt-10 px-5 py-2.5 text-base font-bold bg-dark-100 text-gold border-2 border-gold rounded-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_#AF803C] hover:text-shadow-[0_0_5px_#AF803C,0_0_10px_#AF803C,0_0_15px_#AF803C,0_0_20px_#AF803C]"
+        onClick={handleConfirm}
+      >
         Confirm Selection
       </button>
 
       {focusChar && (
-        <div className="focus-overlay" onClick={() => setFocusChar(null)}>
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-95 flex justify-center items-center z-50 animate-fade-in"
+          onClick={() => setFocusChar(null)}
+        >
           <img
             src={`${focusChar.image}`}
             alt={focusChar.name}
-            className="focus-image"
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-[0_0_30px_#AF803C]"
           />
         </div>
       )}
 
       {/* 🌌 Full-screen hover overlay */}
       {showOverlay && hoveredChar && (
-        <div className="character-overlay" onClick={onHoverEnd}>
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-95 flex justify-center items-center z-50 animate-fade-in"
+          onClick={onHoverEnd}
+        >
           <img
             src={`${hoveredChar.image}`}
             alt={hoveredChar.name}
-            className="overlay-image"
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-xl shadow-[0_0_30px_#AF803C]"
           />
         </div>
       )}

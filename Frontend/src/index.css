@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+    color: theme('colors.gold.DEFAULT');
+    background-color: theme('colors.dark.200');
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: theme('colors.dark.400');
+    color: theme('colors.gold.DEFAULT');
+    font-family: theme('fontFamily.aboreto');
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  #root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    font-weight: bold;
+    color: theme('colors.gold.DEFAULT');
+    text-decoration: inherit;
+  }
+  
+  a:hover {
+    color: theme('colors.gold.DEFAULT');
+    text-shadow: 0 0 5px theme('colors.gold.DEFAULT');
+  }
+
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: theme('colors.dark.100');
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  
+  button:hover {
+    border-color: theme('colors.dark.100');
+  }
+  
+  button:focus,
+  button:focus-visible {
+    outline: 2px solid theme('colors.gold.DEFAULT');
+    box-shadow: 0 0 10px theme('colors.gold.DEFAULT');
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: theme('colors.dark.100');
+      background-color: theme('colors.dark.100');
+    }
+    
+    a:hover {
+      color: theme('colors.dark.100');
+    }
+    
+    button {
+      background-color: theme('colors.dark.100');
+    }
+  }
+}
+
+@layer components {
+  .card {
+    @apply relative z-10 w-24 h-36 object-contain rounded-lg transition-transform duration-200 shadow-md;
+  }
+  
+  .card:hover {
+    @apply scale-105;
+  }
+  
+  .player-card {
+    @apply w-32 h-44 object-contain rounded-lg transition-transform duration-200 shadow-lg;
+  }
+  
+  .player-card:hover {
+    @apply scale-110;
+  }
+  
+  .pile-card {
+    @apply w-20 h-28 border-2 border-gold rounded-lg shadow-gold;
+  }
+  
+  .discard-card {
+    @apply w-20 h-28 border-2 border-gold rounded-lg shadow-gold absolute top-0 left-0;
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 5px #AF803C, 0 0 10px #AF803C, 0 0 15px #AF803C, 0 0 20px #AF803C;
+  }
+
+  .text-shadow-gold {
+    text-shadow: 0 0 3px #AF803C, 0 0 6px #AF803C;
+  }
+
+  .shadow-gold {
+    box-shadow: 0 0 10px #AF803C, 0 0 15px #AF803C;
+  }
+}

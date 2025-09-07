@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './RPS.css';
 
 function RPS() {
   const location = useLocation();
@@ -27,7 +26,7 @@ function submitRPS(choice) {
   setPlayerChoice(choice);
 
   function playRPS() {
-    fetch('/api/rps', {
+    fetch('http://localhost:3000/api/rps', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ playerChoice: choice })
@@ -69,12 +68,27 @@ navigate('/game', {
   // If result not yet ready, show choice buttons
   if (!outcome) {
     return (
-      <div className="rps-container">
-        <h2>Choose Rock, Paper, or Scissors</h2>
-        <div className="rps-options">
-          <button onClick={() => submitRPS('rock')}>🪨 Rock</button>
-          <button onClick={() => submitRPS('paper')}>📄 Paper</button>
-          <button onClick={() => submitRPS('scissors')}>✂️ Scissors</button>
+      <div className="w-full min-h-screen bg-black text-gold flex flex-col items-center justify-center p-5 box-border">
+        <h2 className="text-3xl mb-5">Choose Rock, Paper, or Scissors</h2>
+        <div className="flex gap-4">
+          <button 
+            className="px-6 py-3 text-xl font-bold bg-dark-100 text-gold border-2 border-gold rounded-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_#AF803C] hover:text-shadow-[0_0_5px_#AF803C,0_0_10px_#AF803C,0_0_15px_#AF803C,0_0_20px_#AF803C]"
+            onClick={() => submitRPS('rock')}
+          >
+            🪨 Rock
+          </button>
+          <button 
+            className="px-6 py-3 text-xl font-bold bg-dark-100 text-gold border-2 border-gold rounded-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_#AF803C] hover:text-shadow-[0_0_5px_#AF803C,0_0_10px_#AF803C,0_0_15px_#AF803C,0_0_20px_#AF803C]"
+            onClick={() => submitRPS('paper')}
+          >
+            📄 Paper
+          </button>
+          <button 
+            className="px-6 py-3 text-xl font-bold bg-dark-100 text-gold border-2 border-gold rounded-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_#AF803C] hover:text-shadow-[0_0_5px_#AF803C,0_0_10px_#AF803C,0_0_15px_#AF803C,0_0_20px_#AF803C]"
+            onClick={() => submitRPS('scissors')}
+          >
+            ✂️ Scissors
+          </button>
         </div>
       </div>
     );
@@ -83,23 +97,30 @@ navigate('/game', {
   // If result is ready, show outcome
   if (!isReady) {
     return (
-      <div className="rps-loading-screen">
-        <h2 className="rps-loading-text">Playing Rock Paper Scissors...</h2>
+      <div className="w-full min-h-screen bg-black text-gold flex flex-col items-center justify-center p-5 box-border">
+        <h2 className="text-3xl text-gold text-center animate-[shimmer_4s_ease-in-out_infinite]">
+          Playing Rock Paper Scissors...
+        </h2>
       </div>
     );
   }
 
   return (
-    <div className="rps-container">
-      <h2>Rock Paper Scissors Result</h2>
-      <p>🧍 You chose: <strong>{outcome.playerChoice}</strong></p>
-      <p>🤖 Bot chose: <strong>{outcome.botChoice}</strong></p>
-      <h3>
+    <div className="w-full min-h-screen bg-black text-gold flex flex-col items-center justify-center p-5 box-border">
+      <h2 className="text-3xl mb-5">Rock Paper Scissors Result</h2>
+      <p className="text-xl mb-2">🧍 You chose: <strong>{outcome.playerChoice}</strong></p>
+      <p className="text-xl mb-6">🤖 Bot chose: <strong>{outcome.botChoice}</strong></p>
+      <h3 className="text-4xl font-bold mb-8 text-shadow-[0_0_5px_#AF803C,0_0_10px_#AF803C,0_0_15px_#AF803C,0_0_20px_#AF803C]">
         {outcome.result === 'draw'
-          ? 'It’s a Draw!'
+          ? "It's a Draw!"
           : `${outcome.result === 'player' ? 'You' : 'Bot'} will go first!`}
       </h3>
-      <button onClick={startGame}>Continue to Game</button>
+      <button 
+        className="px-6 py-3 text-xl font-bold bg-dark-100 text-gold border-2 border-gold rounded-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_#AF803C] hover:text-shadow-[0_0_5px_#AF803C,0_0_10px_#AF803C,0_0_15px_#AF803C,0_0_20px_#AF803C]"
+        onClick={startGame}
+      >
+        Continue to Game
+      </button>
     </div>
   );
 }
