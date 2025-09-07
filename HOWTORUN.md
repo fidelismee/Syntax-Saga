@@ -23,6 +23,11 @@ node server.js
 ### Run Frontend
 
 ```
+Development
 cd .\Frontend\
 npm run dev
+
+Production
+npm run build
+npm start
 ```
